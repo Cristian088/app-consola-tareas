@@ -1,3 +1,4 @@
+const { guardaDB, leerDB } = require('./helpers/guardarArchivo');
 const { inquirerMenu,
         pausa, 
         leerInput} = require('./helpers/inquirer');
@@ -15,9 +16,13 @@ const main = async() => {
     let opt = '';
     const tareas = new Tareas();
     
-    // tareas._listado[tarea.id] = tarea;
+    const tareasDB = leerDB();
 
-    // console.log(tareas);
+    if ( tareasDB ) {
+        TODO: 'Establecer las tareas.'
+    }
+
+    await pausa(); 
 
     do {
         //Imprimir el menu.
@@ -27,7 +32,7 @@ const main = async() => {
             case '1':
                 TODO: 'Crear tareas.'
                     const desc = await leerInput('Descripción: ');
-                    tareas.crearTarea(desc);
+                    tareas.crearTarea(desc); 
 
                 break;
             case '2':
@@ -50,6 +55,8 @@ const main = async() => {
             default: 0
                 break;
         }
+
+        //guardaDB( tareas.listadoArr );
 
         await pausa();
 
