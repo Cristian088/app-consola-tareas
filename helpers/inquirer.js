@@ -6,7 +6,44 @@ const menuOpts = [
         type: 'list',
         name: 'opcion',
         message: '¿Qué desea hacer?',
-        choice: ['opt1','opt2','opt3','opt4','opt5','opt6'],  
+        choices: [
+           {
+               value: '1',
+               name: '1. Crear tarea'
+           },
+           {
+               value: '2',
+               name: '2. Listar tareas'
+           },
+           {
+               value: '3',
+               name: '3. Listar tareas pendientes'
+           },
+           {
+               value: '4',
+               name: '4. Listar tareas completas'
+           },
+           {
+               value: '5',
+               name: '5. Completar tarea(s)'
+           },
+           {
+               value: '6',
+               name: '6. Borrar tarea'
+           },
+           {
+               value: '0',
+               name: '0. Salir'
+           }       
+        ] 
+    }
+]
+
+const pausaMenu = [
+    {
+        type: 'input',
+        name: 'pausa',
+        message: `Presiona ${'ENTER'.green} para continuar.`
     }
 ]
 
@@ -18,13 +55,19 @@ const inquirerMenu = async() => {
     console.log('   Seleccione una opción'.green);
     console.log('=============================\n'.green);
 
-    await inquirer.prompt([
+    const {opcion} =  await inquirer.prompt(menuOpts);
 
-    ])
-
+    return opcion;
 
 }
 
+
+const pausa = async() =>{
+
+    await inquirer.prompt(pausaMenu);    
+}
+
 module.exports = {
-    inquirerMenu
+    inquirerMenu,
+    pausa
 }
